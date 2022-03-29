@@ -1,0 +1,7 @@
+{
+  "name": "io-app-scan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
