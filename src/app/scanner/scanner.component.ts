@@ -1,21 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   CameraPreview,
   CameraPreviewOptions,
   CameraPreviewPictureOptions,
 } from '@capacitor-community/camera-preview';
+import { StoreService } from '../services/store.service'
 
 @Component({
   selector: 'app-scanner',
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss'],
 })
-export class ScannerComponent {
+export class ScannerComponent implements OnDestroy, OnInit {
+
+  @Input() typeScanner: ETypeScanner;
   image = null;
   cameraActive: boolean = false;
 
-  constructor(private _sanitizer: DomSanitizer) {}
+  constructor(
+    private _storeService: StoreService
+    ) {}
+
+  ngOnDestroy() {
+    this.stopCamera();
+  }
+
+  ngOnInit(){
+    this.stopCamera()
+  }
+
 
   async openCamera() {
     const cameraPreviewOpts: CameraPreviewOptions = {
@@ -36,14 +49,17 @@ export class ScannerComponent {
   }
 
   async captureImage() {
+
     const pictureOpts: CameraPreviewPictureOptions = {
-      width: 400,
-      height: 400,
+      width: this.typeScanner === ETypeScanner.face ? 400 : 500,
+      height: this.typeScanner === ETypeScanner.face ? 400 : 250,
       quality: 90,
     };
 
     const result = await CameraPreview.capture(pictureOpts);
     this.image= `data:image/jpeg;base64,${result.value}`;
+
+    await this._storeService.saveInDisk('scanner', result.value);
 
     await this.stopCamera();
     this.cameraActive = false;
@@ -52,4 +68,9 @@ export class ScannerComponent {
   async flipCamera() {
     CameraPreview.flip();
   }
+}
+
+export enum ETypeScanner{
+  face = 'face',
+  document = 'document'
 }

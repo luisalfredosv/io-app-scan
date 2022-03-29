@@ -1,6 +1,9 @@
 <div id="cameraPreview" class="cameraPreview">
   <div *ngIf="cameraActive">
-    <img src="./assets/icon/favicon.png" class="image-overlay" />
+    <img src="./assets/icon/face-id.png" *ngIf="typeScanner === 'face'" class="image-face" />
+
+    <img src="./assets/icon/face-id.png" *ngIf="typeScanner === 'document'" class="image-document" />
+
 
     <ion-button (click)="stopCamera()" expand="block" id="close">
       <ion-icon name="close" slot="icon-only"></ion-icon>

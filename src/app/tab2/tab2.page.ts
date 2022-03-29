@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ETypeScanner } from '../scanner/scanner.component'
 
 @Component({
   selector: 'app-tab2',
@@ -9,4 +10,5 @@ export class Tab2Page {
 
   constructor() {}
 
+  typeScanner = ETypeScanner.document;
 }

@@ -16,16 +16,25 @@ ion-content{
   position: absolute;
 }
 
-.image-overlay {
+.image-face {
   z-index: 1;
-  position: absolute;
-  left: 25%;
-  top: 25%;
-  width: 50%;
+  position: fixed;
+  left: 12%;
+  top: 15%;
+  width: 75%;
+}
+
+.image-document {
+  z-index: 1;
+  position: fixed;
+  left: 5%;
+  top:15%;
+  width: 90%;
+  height: 30%;
 }
 
 #capture{
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   left: calc(50% - 25px);
   width: 50px;
@@ -34,7 +43,7 @@ ion-content{
 }
 
 #close{
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   left: calc(50% - 175px);
   width: 50px;
@@ -43,7 +52,7 @@ ion-content{
 }
 
 #flip{
-  position: absolute;
+  position: fixed;
   bottom: 60px;
   left: calc(50% + 125px);
   width: 50px;
