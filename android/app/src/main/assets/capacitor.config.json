@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "io-app-scan",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
