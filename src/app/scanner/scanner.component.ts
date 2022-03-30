@@ -32,14 +32,21 @@ export class ScannerComponent implements OnDestroy, OnInit {
 
   async openCamera() {
     const cameraPreviewOpts: CameraPreviewOptions = {
-      position: 'rear',
+      position: this.typeScanner === ETypeScanner.face ? 'front' : 'rear',
       parent: 'cameraPreview',
       className: 'cameraPreview',
       lockAndroidOrientation: true,
       disableAudio: true,
+      disableExifHeaderStripping: true,
+      toBack: false,
+      width: window.screen.width / 2,
+      height: window.screen.height / 2,
+      paddingBottom: 250,
+      enableHighResolution: true,
+      rotateWhenOrientationChanged: true,
     };
 
-    CameraPreview.start(cameraPreviewOpts);
+    await CameraPreview.start(cameraPreviewOpts);
     this.cameraActive = true;
   }
 

@@ -1,21 +1,31 @@
-<div id="cameraPreview" class="cameraPreview">
-  <div *ngIf="cameraActive">
-    <img src="./assets/icon/face-id.png" *ngIf="typeScanner === 'face'" class="image-face" />
+<div>
+  <div id="cameraPreview" class="cameraPreview"></div>
+  <div>
+    <div *ngIf="cameraActive">
+      <img
+        src="./assets/icon/face-id.png"
+        *ngIf="typeScanner === 'face'"
+        class="image-face"
+      />
 
-    <img src="./assets/icon/face-id.png" *ngIf="typeScanner === 'document'" class="image-document" />
+      <img
+        src="./assets/icon/face-id.png"
+        *ngIf="typeScanner === 'document'"
+        class="image-document"
+      />
 
+      <ion-button (click)="stopCamera()" expand="block" id="close">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
 
-    <ion-button (click)="stopCamera()" expand="block" id="close">
-      <ion-icon name="close" slot="icon-only"></ion-icon>
-    </ion-button>
+      <ion-button (click)="captureImage()" expand="block" id="capture">
+        <ion-icon name="camera" slot="icon-only"></ion-icon>
+      </ion-button>
 
-    <ion-button (click)="captureImage()" expand="block" id="capture">
-      <ion-icon name="camera" slot="icon-only"></ion-icon>
-    </ion-button>
-
-    <ion-button (click)="flipCamera()" expand="block" id="flip">
-      <ion-icon name="refresh" slot="icon-only"></ion-icon>
-    </ion-button>
+      <ion-button (click)="flipCamera()" expand="block" id="flip">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 </div>
 
@@ -28,4 +38,6 @@
   </ion-fab-button>
 </ion-fab> -->
 
-<ion-button (click)="openCamera()" expand="full" *ngIf="!cameraActive">Open Camera</ion-button>
+<ion-button (click)="openCamera()" expand="full" *ngIf="!cameraActive"
+  >Open Camera</ion-button
+>
